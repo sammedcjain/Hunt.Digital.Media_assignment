@@ -236,12 +236,13 @@ function handleMultipleDates() {
         return; // Prevent submission if any input is missing
     }
     // Check if the number of days is 0
-    const numOfDays = parseInt(row.querySelector(".num-of-days").value);
-    console.log(numOfDays);
-    if (isNaN(numOfDays) || numOfDays === 0) {
-        alert("Number of days cannot be 0 or empty. Please include at least 1 valid number of days.");
-        return; // Prevent submission if number of days is NaN or 0
-    }
+    const numOfDaysCell = row.querySelector(".num-of-days");
+const numOfDays = parseInt(numOfDaysCell.textContent);
+
+if (isNaN(numOfDays) || numOfDays === 0) {
+    alert("Number of days cannot be 0 or empty. Please include at least 1 valid number of days.");
+    return; // Prevent submission if number of days is NaN or 0
+}
 
         const newRow = row.cloneNode(true);
     

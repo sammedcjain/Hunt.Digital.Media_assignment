@@ -323,18 +323,16 @@ document.addEventListener("DOMContentLoaded", function() {
     expectedDRRColumn.textContent = ""; // Clear the "expected-drr" column
 
     row.querySelector(".month-year").textContent = "";
+    
     // Reset the Flatpickr instance for "exclude-date" input
     const excludedDatesInput = row.querySelector(".exclude-date");
     if (excludedDatesInput._flatpickr) {
-        excludedDatesInput._flatpickr.destroy();
-        excludedDatesInput.value = "";
-        flatpickr(excludedDatesInput, {
-            mode: "multiple",
-            dateFormat: "Y-m-d",
-            onChange: function(selectedDates, dateStr) {
-                datesExcludedColumn.textContent = dateStr;
-            },
-        });
+        // Clear the selected dates and enable the date range
+        excludedDatesInput._flatpickr.clear();
+        excludedDatesInput._flatpickr.set("enable", [{
+            from: row.querySelector(".start-date").value,
+            to: row.querySelector(".end-date").value,
+        }]);
     }
   }
 
